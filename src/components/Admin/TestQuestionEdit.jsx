@@ -27,7 +27,7 @@ const TestQuestionEdit = ({ blockId, testId }) => {
       if (response.data && Array.isArray(response.data.questions)) {
         const formattedQuestions = response.data.questions.map((q) => ({
           ...q,
-          options: JSON.parse(q.options), // 🔥 Фиксируем строковый массив
+          options: JSON.parse(q.options),
         }));
         setQuestions(formattedQuestions);
       } else {
@@ -42,7 +42,7 @@ const TestQuestionEdit = ({ blockId, testId }) => {
   const startEditing = (question) => {
     setEditingQuestionId(question.id);
     setUpdatedText(question.question);
-    setUpdatedAnswers([...question.options]); // Используем реальные ответы
+    setUpdatedAnswers([...question.options]); 
     setCorrectAnswer(question.answer || "");
   };
 
@@ -68,7 +68,7 @@ const TestQuestionEdit = ({ blockId, testId }) => {
 
     const updatedData = {
       question: updatedText,
-      options: JSON.stringify(updatedAnswers), // Преобразуем обратно в строку
+      options: updatedAnswers,
       answer: correctAnswer,
     };
 
@@ -79,7 +79,7 @@ const TestQuestionEdit = ({ blockId, testId }) => {
       );
       setQuestions((prevQuestions) =>
         prevQuestions.map((q) =>
-          q.id === editingQuestionId ? { ...q, ...updatedData, options: updatedAnswers } : q
+          q.id === editingQuestionId ? { ...q, ...updatedData } : q
         )
       );
       setEditingQuestionId(null);
