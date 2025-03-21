@@ -8,9 +8,8 @@ services:
       - dokploy-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.react-app.rule=Host(`yourdomain.com`)" # Замените на ваш домен
-      - "traefik.http.routers.react-app.entrypoints=websecure"
-      - "traefik.http.routers.react-app.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.react-app.rule=Host(`217.154.81.219`)"
+      - "traefik.http.routers.react-app.entrypoints=web"
       - "traefik.http.services.react-app.loadbalancer.server.port=80"
 
 networks:
